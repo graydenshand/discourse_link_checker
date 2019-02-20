@@ -1,0 +1,15 @@
+#From Dropbox/Awesome/GitHub
+
+docker build link_checker -t link_checker:latest  
+
+
+#Launches the docker container with interactive shell, and mounts the app directory (on host) to the cwd of the docker container. 
+docker run -it --rm --name link_checker -v /Users/grayden/Dropbox/Awesome/GitHub/link_checker:/home/link_checker link_checker:latest
+
+
+#Build the database from the backup 
+psql -f the-marketing-seminar.sql
+
+
+#Run the script
+python3 main.py
