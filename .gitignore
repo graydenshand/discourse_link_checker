@@ -103,3 +103,6 @@ venv.bak/
 # mypy
 .mypy_cache/
 .DS_Store
+broken_links.csv
+testing.sql
+the-marketing-seminar.sql
