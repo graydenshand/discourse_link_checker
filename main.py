@@ -83,13 +83,17 @@ for i, row in enumerate(link_list_master):
 
 print(str(len(broken_links)) + " suspicious links found")
 
-print("Building CSV")
-csv_headers = broken_links[0].keys()
-f = open('broken_links.csv','w', encoding="utf-8")
-writer = csv.DictWriter(f, fieldnames=csv_headers)
-writer.writeheader()
-writer.writerows(broken_links)
+f = open('broken_links.csv', 'w')
+f.write('')
 f.close()
+if len(broken_links) > 0:
+	print("Building CSV")
+	csv_headers = broken_links[0].keys()
+	f = open('broken_links.csv','w', encoding="utf-8")
+	writer = csv.DictWriter(f, fieldnames=csv_headers)
+	writer.writeheader()
+	writer.writerows(broken_links)
+	f.close()
 
 print("DONE")
 
