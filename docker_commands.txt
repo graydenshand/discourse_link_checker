@@ -8,7 +8,7 @@ docker run -it --rm --name link_checker -v /Users/grayden/Dropbox/Awesome/GitHub
 
 
 #Build the database from the backup 
-psql -f the-marketing-seminar.sql
+psql -f workshop.sql
 
 
 #Run the script

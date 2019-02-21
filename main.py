@@ -1,4 +1,5 @@
 import psycopg2
+import psycopg2.extras
 import re
 import requests
 from decimal import Decimal
@@ -23,7 +24,7 @@ def linkSearch(string):
 
 #Open the database connection
 conn = psycopg2.connect("dbname=postgres user=postgres")
-cur = conn.cursor()
+cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
 #Write SQL query to string
 sql = '''SELECT p.id, p.user_id, p.post_number, t.title topic, c.name category, p.cooked html
@@ -45,9 +46,9 @@ link_list_master = []
 i=1
 
 for row in cur:
-	utf_post = row[5].encode('utf-8')
+	utf_post = row['html'].encode('utf-8')
 	if linkSearch(utf_post) != False:
-		data = {'post':utf_post, 'post_id': row[0], 'user_id': row[1], 'post_number': row[2], 'topic': row[3].encode("utf-8"), 'category': row[4].encode("utf-8"), 'link': ''}
+		data = {'post':utf_post, 'post_id': row['id'], 'user_id': row['user_id'], 'post_number': row['post_number'], 'topic': row['topic'].encode("utf-8"), 'category': row['category'].encode("utf-8"), 'link': ''}
 		for link in linkSearch(utf_post):
 			data['link'] = link
 			link_list_master.append(data)
