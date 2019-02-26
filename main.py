@@ -9,7 +9,7 @@ import csv
 f = open("known_links.json",'r')
 known_links = json.loads(f.read())
 
-link_structure = re.compile('''(href=['"])(https?://[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\-.\_~:/?#\[\]@!$&'()*+,;=]+)(")'''.encode('utf-8'))
+link_structure = re.compile('''(href=['"])(http(s)://[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\-.\_~:/?#\[\]@!$&'()*+,;=]+)(")'''.encode('utf-8'))
 #Function to get all found links
 def linkSearch(string):
 	links_found = link_structure.findall(string)
@@ -48,14 +48,11 @@ i=1
 for row in cur:
 	utf_post = row['html'].encode('utf-8')
 	if linkSearch(utf_post) != False:
-		data = {'post':utf_post, 'post_id': row['id'], 'user_id': row['user_id'], 'post_number': row['post_number'], 'topic': row['topic'].encode("utf-8"), 'category': row['category'].encode("utf-8"), 'link': ''}
 		for link in linkSearch(utf_post):
-			data['link'] = link
+			data = {'post':utf_post, 'post_id': row['id'], 'user_id': row['user_id'], 'post_number': row['post_number'], 'topic': row['topic'].encode("utf-8"), 'category': row['category'].encode("utf-8"), 'link': link}
 			link_list_master.append(data)
 	i+=1
 conn.close()
-
-
 
 num_links = len(link_list_master)
 
