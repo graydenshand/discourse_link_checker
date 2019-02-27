@@ -82,6 +82,8 @@ for i, row in enumerate(link_list_master):
 	except requests.exceptions.RequestException as e:
 		if link not in known_links:
 			row['error'] = str(e)
+			row['fixed'] = 'n'
+			row['comment'] = None
 			broken_links.append(row)
 			print(link, e)
 
@@ -96,8 +98,11 @@ f.write('')
 f.close()
 if len(broken_links) > 0:
 	print("Building CSV")
-	csv_headers = broken_links[0].keys()
-	f = open('broken_links.csv','w', encoding="utf-8")
+	if len(broken_links) > 0:
+		csv_headers = broken_links[0].keys()
+	else:
+		csv_headers = ['There were no suspicious links found.']
+	f = open(output_path,'w', encoding="utf-8")
 	writer = csv.DictWriter(f, fieldnames=csv_headers)
 	writer.writeheader()
 	writer.writerows(broken_links)
