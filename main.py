@@ -42,7 +42,8 @@ WHERE t.id = p.topic_id
 AND c.id = t.category_id
 AND p.user_id = u.id
 AND u.admin = TRUE
-AND p.deleted_at IS null;
+AND p.deleted_at IS null
+AND u.id != 1;
 '''
 
 
