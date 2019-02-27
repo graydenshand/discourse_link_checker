@@ -4,7 +4,16 @@ import re
 import requests
 from decimal import Decimal
 import json
+from datetime import datetime
 import csv
+import sys
+
+try:
+	sessionid = sys.argv[1]
+except IndexError:
+	sessionid = input("Please enter the ID of this workshop session (e.g. TMS6)\n")
+
+output_path = 'finished_searches/' + sessionid + '_' + str(datetime.now().date()) + '.csv'
 
 f = open("known_links.json",'r')
 known_links = json.loads(f.read())
@@ -57,6 +66,7 @@ conn.close()
 num_links = len(link_list_master)
 
 print(str(num_links) + " links found")
+
 print("Clicking links")
 
 broken_links = []
@@ -80,7 +90,8 @@ for i, row in enumerate(link_list_master):
 
 print(str(len(broken_links)) + " suspicious links found")
 
-f = open('broken_links.csv', 'w')
+print("Writing output to " + output_path)
+f = open(output_path, 'w')
 f.write('')
 f.close()
 if len(broken_links) > 0:
