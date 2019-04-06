@@ -58,7 +58,7 @@ If no suspicious links were found, you’re done.
 Otherwise, open the csv you just created (found in finished_searches/) in excel. For each link in the spreadsheet, try to open the link in your web browser. Sometimes sites will appear suspicious because they have guards against robot web crawlers. Opening these links in your web browser will tell you if it is actually broken.
 
 ### Broken links
-If the link is actually broken, use the contextual information in the spreadsheet to find it on Discourse and fix it. If there doesn’t appear to be a simple technical fix, send a screenshot of the post with the link circled to Marie Schacht via the Operations channel, please also include a link to the post for ease of access. It is also a good idea to add a comment to the csv file for this link to indicate it needed to be followed up on. 
+If the link is actually broken, use the contextual information in the spreadsheet to find it on Discourse and fix it.
 
 ### Working links
 On the other hand, if you click the link and it opens with no problems, add that url to the list of known links in “know_links.json” (comma separated, in quotes). Next time, the link_checker will see that this link has been verified and won’t include it in the list of suspicious links. 
