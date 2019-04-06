@@ -9,16 +9,17 @@ import csv
 import sys
 
 try:
-	sessionid = sys.argv[1]
+	output_file_name = sys.argv[1]
 except IndexError:
-	sessionid = input("Please enter the ID of this workshop session (e.g. TMS6)\n")
+	output_file_name = input("Please enter the ID of this workshop session (e.g. TMS6)\n")
 
-output_path = 'finished_searches/' + sessionid + '_' + str(datetime.now().date()) + '.csv'
+output_path = 'finished_searches/' + output_file_name + '_' + str(datetime.now().date()) + '.csv'
 
 f = open("known_links.json",'r')
 known_links = json.loads(f.read())
 
 link_structure = re.compile('''(href=['"])(http(s)://[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\-.\_~:/?#\[\]@!$&'()*+,;=]+)(")'''.encode('utf-8'))
+
 #Function to get all found links
 def linkSearch(string):
 	links_found = link_structure.findall(string)
@@ -110,14 +111,3 @@ if len(broken_links) > 0:
 	f.close()
 
 print("DONE")
-
-
-
-#Unit Testing linkSearch function
-#links = linkSearch('some other text over here <a href="https://somelink.com" plus some more over here <a href="http://anotherlink.link"'.encode('utf-8'))
-#print(linkSearch('some other text over here <a href="http/somelink.com" plus some more over here <a href="ht//anotherlink.link"'.encode('utf-8')))
-#print(linkSearch('this is testing a realy long link <a href="http://somereallylonglink.com/other_characters?like=this&this=that_or-this"'.encode('utf-8')))
-#for link in links:
-	#print(link.decode('utf-8'))
-#print(linkSearch('''href="https://www.udemy.com/modern-marketing-with-seth-godin/?couponCode=LEAPFIRST" lkj'''.encode("utf-8")))
-

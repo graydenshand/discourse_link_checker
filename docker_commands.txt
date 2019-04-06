@@ -13,4 +13,4 @@ psql -f workshop.sql
 
 
 #Run the script
-python3 main.py <workshop_id>
+python3 main.py <output_file_name>

@@ -13,4 +13,4 @@ RUN pip3 install psycopg2-binary requests
 
 #Get postgres ready
 USER postgres
-ENTRYPOINT service postgresql start && psql -f workshop.sql && python3 main.py
+ENTRYPOINT service postgresql start && psql -f discourse.sql && python3 main.py
