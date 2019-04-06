@@ -15,8 +15,8 @@ Once you have this file downloaded, unzip it, rename it ‘discourse.sql’, and
 
 ## Building the Docker Image
 Docker allows us to “containerize” the tool and ensure that all of the necessary software libraries are installed no matter which computer is running the script.<br>
-If you’d like to learn more about Docker click [here](https://www.docker.com/why-docker). 
-To install Docker on your computer click [here](https://www.docker.com/get-started).<br>
+* If you’d like to learn more about Docker click [here](https://www.docker.com/why-docker). 
+* To install Docker on your computer click [here](https://www.docker.com/get-started).<br>
 
 Once docker is installed, the next step is to build the Docker image we will be using. Change your working directory to the folder containing the link_checker directory. 
 <br>
