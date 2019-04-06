@@ -6,11 +6,3 @@ docker build link_checker -t link_checker:latest
 #Launches the docker container with interactive shell, and mounts the app directory (on host) to the cwd of the docker container. 
 #PWD must be the link_checker directory
 docker run -it --rm --name link_checker -v $(pwd):/home/link_checker link_checker:latest
-
-
-#Build the database from the backup 
-psql -f workshop.sql
-
-
-#Run the script
-python3 main.py <output_file_name>
