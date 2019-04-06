@@ -10,7 +10,7 @@ The first step in this process is to get a database backup of the discourse sess
 <br>
 Click on the blue ‘Backup’ button in the top right to start a new backup. When prompted, select ‘Yes, (do not include uploads)”. Once the backup is finished, it will appear below, with a button that says “Download”. Click this and you will be emailed a download link for the file.
 <br>
-Once you have this file downloaded, unzip it, rename it ‘discourse.sql’, and place it in the ‘link_checker’ directory.
+Once you have this file downloaded, unzip it, rename it ‘discourse.sql’, and place it in the ‘discourse_link_checker’ directory.
 
 
 ## Building the Docker Image
@@ -23,9 +23,9 @@ Once docker is installed, the next step is to build the Docker image we will be 
 
 Once there, call 
 ```
-docker build link_checker -t link_checker:latest  
+docker build discourse_link_checker -t link_checker:latest  
 ```
-This command points Docker towards the directory containing a Dockerfile (instructions to build a Docker image), in this case that folder is called ‘link_checker’.
+This command points Docker towards the directory containing a Dockerfile (instructions to build a Docker image), in this case that folder is called `discourse_link_checker/`.
 <br>
 Docker will build your image, installing all of the necessary packages. We are ‘tagging’ the image with the name ‘link_checker:latest’ so that we can easily access it later. You only need to do this step once, unless there are changes to the Dockerfile (environment).
 
